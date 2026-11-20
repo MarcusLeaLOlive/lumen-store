@@ -1,0 +1,111 @@
+# ==========================================
+# .gitignore — Lumen Store (React + Vite)
+# ==========================================
+
+# ---------- Dependências ----------
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+bower_components/
+jspm_packages/
+
+# ---------- Build e saída ----------
+dist/
+dist-ssr/
+build/
+out/
+*.local
+.vite/
+.cache/
+.parcel-cache/
+.turbo/
+.next/
+.nuxt/
+.output/
+.svelte-kit/
+
+# ---------- Variáveis de ambiente (segredos) ----------
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# ---------- Logs ----------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# ---------- Testes e cobertura ----------
+coverage/
+*.lcov
+.nyc_output/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+cypress/videos/
+cypress/screenshots/
+
+# ---------- Caches de ferramentas ----------
+.eslintcache
+.stylelintcache
+.prettiercache
+*.tsbuildinfo
+.npm/
+.node_repl_history
+.yarn-integrity
+
+# ---------- Deploy ----------
+.vercel/
+.netlify/
+.firebase/
+.wrangler/
+
+# ---------- Editores e IDEs ----------
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*~
+.fleet/
+.history/
+
+# ---------- Sistema operacional ----------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.directory
+.Trash-*
+
+# ---------- Arquivos temporários ----------
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+*.zip
+*.tgz
