@@ -1,0 +1,40 @@
+# Sobe o PostgreSQL já com o esquema e os dados de exemplo.
+#   docker compose up -d      → banco em localhost:5432 e Adminer em http://localhost:8080
+#   docker compose down -v    → apaga tudo e recomeça do zero
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: lumen-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-lumen_store}
+      POSTGRES_USER: ${POSTGRES_USER:-lumen}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-lumen123}
+      TZ: America/Sao_Paulo
+      PGTZ: America/Sao_Paulo
+    ports:
+      - "5432:5432"
+    volumes:
+      - lumen_pgdata:/var/lib/postgresql/data
+      # Executados em ordem alfabética só na PRIMEIRA vez que o volume é criado
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-lumen} -d ${POSTGRES_DB:-lumen_store}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Interface web para ver as tabelas (Sistema: PostgreSQL · Servidor: db)
+  adminer:
+    image: adminer
+    container_name: lumen-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  lumen_pgdata:

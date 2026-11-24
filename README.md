@@ -40,12 +40,27 @@ Acesse `http://localhost:5173`.
 | CPF | `529.982.247-25` |
 | Cartão | `4111 1111 1111 1111` (qualquer validade futura) |
 
+## 🗄️ Banco de dados (modelagem para a versão com back-end)
+
+O site atual guarda os dados no navegador, mas o repositório já traz a modelagem completa para a versão com banco de dados, usando **Node.js + Express + PostgreSQL**:
+
+- [`database/schema.sql`](database/schema.sql): 13 tabelas com chaves estrangeiras, restrições, índices, gatilhos e visões de relatório
+- [`database/seed.sql`](database/seed.sql): o mesmo catálogo do site, cupons, usuários e um pedido de exemplo
+- [`database/queries.sql`](database/queries.sql): as consultas SQL de cada tela, incluindo o checkout em transação
+- [`docker-compose.yml`](docker-compose.yml): sobe PostgreSQL + Adminer com um comando
+- [`docs/BANCO-DE-DADOS.md`](docs/BANCO-DE-DADOS.md): diagrama ER, dicionário de dados, API REST planejada e boas práticas de segurança
+
+```bash
+npm run db:up      # sobe o banco já populado (requer Docker)
+```
+
 ## 🛠️ Tecnologias
 
 - React 18 (hooks: `useState`, `useEffect`, `useMemo`, hook próprio `useTotals`)
 - Vite
 - CSS puro com variáveis e layout responsivo (Grid e Flexbox)
 - `localStorage` para persistência
+- PostgreSQL 16 + Docker (modelagem do banco para a versão com back-end)
 
 ## 📁 Estrutura
 
@@ -57,6 +72,8 @@ src/
 ├── hooks/           # useTotals
 ├── lib/utils.js     # formatação, máscaras, validações e frete
 └── data/products.js # catálogo inicial
+database/            # schema.sql, seed.sql e queries.sql (PostgreSQL)
+docs/                # documentação do banco de dados
 ```
 
 ## 👤 Autor
