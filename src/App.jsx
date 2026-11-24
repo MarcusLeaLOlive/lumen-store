@@ -43,7 +43,7 @@ export default function App() {
       const ex = d.cart.find(c => c.key === key);
       return { ...d, cart: ex ? d.cart.map(c => c.key === key ? { ...c, qty: c.qty + qty } : c) : [...d.cart, { key, id: p.id, qty, variante }] };
     });
-    notify(`✓ ${p.nome.split(' ').slice(0, 3).join(' ')} adicionado à sacola`);
+    notify(`${p.nome.split(' ').slice(0, 3).join(' ')} adicionado à sacola`);
     return true;
   }
   function setQty(key, qty) {
@@ -54,7 +54,7 @@ export default function App() {
       return { ...d, cart: qty <= 0 ? d.cart.filter(c => c.key !== key) : d.cart.map(c => c.key === key ? { ...c, qty } : c) };
     });
   }
-  const toggleFav = id => { const on = db.favs.includes(id); setDb(d => ({ ...d, favs: on ? d.favs.filter(x => x !== id) : [...d.favs, id] })); notify(on ? 'Removido dos favoritos' : '♥ Salvo nos favoritos'); };
+  const toggleFav = id => { const on = db.favs.includes(id); setDb(d => ({ ...d, favs: on ? d.favs.filter(x => x !== id) : [...d.favs, id] })); notify(on ? 'Removido dos favoritos' : 'Salvo nos favoritos'); };
 
   const ctx = { db, setDb, addToCart, setQty, toggleFav, notify, go, setSel, cartItems, subtotal, P, setCartOpen };
 

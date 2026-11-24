@@ -1,0 +1,5 @@
+# Lumen Store
+User-agent: *
+Allow: /
+
+Sitemap: https://lumen-store.vercel.app/sitemap.xml

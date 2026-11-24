@@ -1,0 +1,11 @@
+# Arquivos que não precisam ir para o deploy na Vercel
+database/
+docs/
+docker-compose.yml
+DESIGN.md
+PRODUCT.md
+.env
+.env.*
+!.env.example
+*.log
+coverage/

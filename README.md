@@ -1,10 +1,10 @@
-# 🛍️ Lumen Store
+# Lumen Store
 
 Loja virtual completa desenvolvida em **React 18 + Vite**: catálogo com filtros, sacola, checkout em etapas com Pix, cartão e boleto, acompanhamento de pedidos e painel administrativo.
 
 > Projeto de portfólio. Pagamentos e dados são simulados e ficam salvos no navegador (`localStorage`).
 
-## ✨ Funcionalidades
+## Funcionalidades
 
 **Loja**
 - Catálogo com busca, filtro por categoria, faixa de preço, ofertas e disponibilidade
@@ -23,7 +23,7 @@ Loja virtual completa desenvolvida em **React 18 + Vite**: catálogo com filtros
 - Painel admin: faturamento, ticket médio, vendas por categoria, mais vendidos e alertas de estoque baixo
 - Cadastro, edição e exclusão de produtos e alteração de status dos pedidos
 
-## 🚀 Como rodar
+## Como rodar
 
 ```bash
 npm install
@@ -32,7 +32,7 @@ npm run dev
 
 Acesse `http://localhost:5173`.
 
-## 🧪 Dados para teste
+## Dados para teste
 
 | O quê | Valor |
 |---|---|
@@ -40,7 +40,7 @@ Acesse `http://localhost:5173`.
 | CPF | `529.982.247-25` |
 | Cartão | `4111 1111 1111 1111` (qualquer validade futura) |
 
-## 🗄️ Banco de dados (modelagem para a versão com back-end)
+## Banco de dados (modelagem para a versão com back-end)
 
 O site atual guarda os dados no navegador, mas o repositório já traz a modelagem completa para a versão com banco de dados, usando **Node.js + Express + PostgreSQL**:
 
@@ -54,7 +54,7 @@ O site atual guarda os dados no navegador, mas o repositório já traz a modelag
 npm run db:up      # sobe o banco já populado (requer Docker)
 ```
 
-## 🛠️ Tecnologias
+## Tecnologias
 
 - React 18 (hooks: `useState`, `useEffect`, `useMemo`, hook próprio `useTotals`)
 - Vite
@@ -62,20 +62,46 @@ npm run db:up      # sobe o banco já populado (requer Docker)
 - `localStorage` para persistência
 - PostgreSQL 16 + Docker (modelagem do banco para a versão com back-end)
 
-## 📁 Estrutura
+## Estrutura
 
 ```
-src/
-├── App.jsx          # estado global e rotas
-├── components/      # ProductCard, ProductModal, CartDrawer, Art, Icons
-├── pages/           # Store, Checkout, Favoritos, Pedidos, Admin
-├── hooks/           # useTotals
-├── lib/utils.js     # formatação, máscaras, validações e frete
-└── data/products.js # catálogo inicial
-database/            # schema.sql, seed.sql e queries.sql (PostgreSQL)
-docs/                # documentação do banco de dados
+lumen-store/
+├── public/               # favicons, og-image, 404.html, robots.txt, sitemap.xml, manifesto
+├── src/
+│   ├── App.jsx           # estado global e rotas
+│   ├── components/       # ProductCard, ProductModal, CartDrawer, Art, Icons
+│   ├── pages/            # Store, Checkout, Favoritos, Pedidos, Admin
+│   ├── hooks/            # useTotals
+│   ├── lib/utils.js      # formatação, máscaras, validações e frete
+│   ├── data/products.js  # catálogo inicial
+│   └── styles.css        # estilos e variáveis de design
+├── database/             # schema.sql, seed.sql e queries.sql (PostgreSQL)
+├── docs/                 # documentação do banco de dados
+├── DESIGN.md             # cores, tipografia, componentes e responsividade
+├── PRODUCT.md            # visão, público, regras de negócio e roteiro
+├── vercel.json           # build, cabeçalhos de segurança e cache
+├── .vercelignore         # o que não vai para o deploy
+└── docker-compose.yml    # PostgreSQL + Adminer
 ```
 
-## 👤 Autor
+## Documentação
+
+| Arquivo | Conteúdo |
+|---|---|
+| [PRODUCT.md](PRODUCT.md) | Visão do produto, público, jornadas, regras de negócio e roteiro |
+| [DESIGN.md](DESIGN.md) | Paleta, tipografia, espaçamentos, componentes e animações |
+| [docs/BANCO-DE-DADOS.md](docs/BANCO-DE-DADOS.md) | Diagrama ER, tabelas, consultas e API planejada |
+
+## Publicação
+
+O projeto já vem configurado para a **Vercel** (`vercel.json`):
+
+1. Acesse [vercel.com](https://vercel.com), entre com o GitHub e clique em **Add New → Project**.
+2. Importe o repositório `lumen-store` e clique em **Deploy**. A Vercel reconhece o Vite sozinha.
+3. Se o endereço gerado for diferente de `lumen-store.vercel.app`, troque o domínio em `index.html`, `public/robots.txt` e `public/sitemap.xml`.
+
+O `vercel.json` adiciona cabeçalhos de segurança (CSP, HSTS, proteção contra *clickjacking*) e cache longo para os arquivos gerados no build. A página `404.html` aparece para qualquer endereço inexistente.
+
+## Autor
 
 **Marcus Leal**

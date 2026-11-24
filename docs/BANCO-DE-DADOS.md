@@ -1,4 +1,4 @@
-# 🗄️ Banco de dados — Lumen Store
+# Banco de dados — Lumen Store
 
 Hoje a Lumen Store roda 100% no navegador e guarda tudo no `localStorage`. Este documento descreve **tudo o que seria necessário para a loja funcionar com um banco de dados real**, seguindo a mesma stack do projeto (JavaScript de ponta a ponta):
 
@@ -15,7 +15,7 @@ Hoje a Lumen Store roda 100% no navegador e guarda tudo no `localStorage`. Este 
 
 ---
 
-## 📁 Arquivos
+## Arquivos
 
 ```
 database/
@@ -27,7 +27,7 @@ docker-compose.yml  # PostgreSQL + Adminer prontos para uso
 
 ---
 
-## 🚀 Como subir o banco
+## Como subir o banco
 
 ### Com Docker (recomendado)
 ```bash
@@ -53,7 +53,7 @@ psql -d lumen_store -f database/seed.sql
 
 ---
 
-## 🧩 Diagrama entidade-relacionamento
+## Diagrama entidade-relacionamento
 
 ```mermaid
 erDiagram
@@ -167,7 +167,7 @@ erDiagram
 
 ---
 
-## 📖 Dicionário das tabelas
+## Dicionário das tabelas
 
 | Tabela | O que guarda | Destaques |
 |---|---|---|
@@ -201,7 +201,7 @@ erDiagram
 
 ---
 
-## 🔄 Do localStorage para o banco
+## Do localStorage para o banco
 
 O estado atual do site (`db` em `src/App.jsx`) vira tabelas assim:
 
@@ -218,7 +218,7 @@ O estado atual do site (`db` em `src/App.jsx`) vira tabelas assim:
 
 ---
 
-## 🔌 API REST planejada (Node.js + Express)
+## API REST planejada (Node.js + Express)
 
 | Método | Rota | Descrição | Consulta em `queries.sql` |
 |---|---|---|---|
@@ -290,7 +290,7 @@ npm install -D nodemon
 
 ---
 
-## 🔒 Segurança
+## Segurança
 
 - **Senhas**: somente hash `bcrypt`, nunca em texto puro.
 - **SQL injection**: sempre consultas com parâmetros (`$1`), nunca concatenando texto do usuário.
@@ -303,7 +303,7 @@ npm install -D nodemon
 
 ---
 
-## ✅ Próximos passos
+## Próximos passos
 
 1. Criar a pasta `server/` com Express e as rotas acima
 2. Trocar o `localStorage` do `App.jsx` por chamadas `fetch('/api/...')`

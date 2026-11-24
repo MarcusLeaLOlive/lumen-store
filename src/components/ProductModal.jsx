@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { brl, onlyDigits, STATUS, COUPONS, FREE_SHIP, CATS, UFS, maskCPF, maskCEP, maskTel, maskCard, maskVal, validCPF, luhn, cardBrand, calcFrete } from '../lib/utils';
 import { Art, ICONS } from '../components/Art';
-import { I, Stars, off } from '../components/Icons';
+import { I, Stars, StarRow, off } from '../components/Icons';
 import { REVIEWS } from '../data/products';
 
 export function ProductModal({ p, ctx, onClose }) {
@@ -34,7 +34,7 @@ export function ProductModal({ p, ctx, onClose }) {
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
               <div className="qty lg"><button onClick={() => setQ(Math.max(1, q - 1))}>−</button><span>{q}</span><button onClick={() => setQ(Math.min(p.estoque || 1, q + 1))}>+</button></div>
               <button className="btn pri" style={{ flex: 1 }} disabled={p.estoque === 0} onClick={() => { if (ctx.addToCart(p, q, v)) { onClose(); ctx.setCartOpen(true); } }}>Adicionar à sacola</button>
-              <button className={'btn ghost fav-btn'} style={{ width: 46, padding: 0, color: fav ? 'var(--accent)' : '' }} onClick={() => ctx.toggleFav(p.id)} aria-label="Favoritar">{fav ? '♥' : '♡'}</button>
+              <button className={'btn ghost fav-btn'} style={{ width: 46, padding: 0, color: fav ? 'var(--accent)' : '' }} onClick={() => ctx.toggleFav(p.id)} aria-label="Favoritar"><span className={'fav ' + (fav ? 'on' : '')} style={{ position: 'static', background: 'none', width: 'auto', height: 'auto' }}>{I.heart}</span></button>
             </div>
             <div className="panel" style={{ padding: 14 }}>
               <div className="field"><label>Calcular frete</label>
@@ -44,7 +44,7 @@ export function ProductModal({ p, ctx, onClose }) {
             <div>
               <div className="field" style={{ marginBottom: 8 }}><label>Avaliações</label></div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {revs.map(([n, s, t]) => <div className="review" key={n}><div className="row"><b>{n}</b><span className="stars">{'★'.repeat(s)}</span></div><div style={{ color: 'var(--muted)' }}>{t}</div></div>)}
+                {revs.map(([n, s, t]) => <div className="review" key={n}><div className="row"><b>{n}</b><StarRow n={s} /></div><div style={{ color: 'var(--muted)' }}>{t}</div></div>)}
               </div>
             </div>
             {related.length > 0 && <div>

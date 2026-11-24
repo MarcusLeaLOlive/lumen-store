@@ -105,7 +105,7 @@ export function Checkout({ ctx }) {
       <p className="sub">Ambiente de demonstração — nenhuma cobrança real é feita. Cartão de teste: 4111 1111 1111 1111.</p>
       <div className="checkout">
         <div>
-          <div className="steps">{STEPS.map((s, i) => <button key={s} className={'step ' + (i === step ? 'on' : i < step ? 'ok' : '')} onClick={() => i < step && setStep(i)}><i>{i < step ? '✓' : i + 1}</i>{s}</button>)}</div>
+          <div className="steps">{STEPS.map((s, i) => <button key={s} className={'step ' + (i === step ? 'on' : i < step ? 'ok' : '')} onClick={() => i < step && setStep(i)}><i>{i < step ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5"><path d="m5 12 5 5 9-10"/></svg> : i + 1}</i>{s}</button>)}</div>
           <div className="panel">
             {step === 0 && <div className="fgrid">
               {F('nome', 'Nome completo', 'c6', { placeholder: 'Maria da Silva', autoComplete: 'name' })}
@@ -134,8 +134,8 @@ export function Checkout({ ctx }) {
                 {[['pix', 'Pix', '5% de desconto · aprovação imediata'], ['cartao', 'Cartão de crédito', 'Até 10x sem juros'], ['boleto', 'Boleto', 'Compensa em até 2 dias']].map(([k, n, s]) =>
                   <button key={k} className={'payopt ' + (pay === k ? 'on' : '')} onClick={() => setPay(k)}><b>{n}</b><small>{s}</small></button>)}
               </div>
-              {pay === 'pix' && <div className="pixbox"><div style={{ fontSize: 40 }}>⚡</div><div><b>Pague {brl(t.total)} com Pix</b><div className="note">O QR Code e o código copia e cola aparecem depois de confirmar o pedido.</div></div></div>}
-              {pay === 'boleto' && <div className="pixbox"><div style={{ fontSize: 40 }}>🧾</div><div><b>Boleto de {brl(t.total)}</b><div className="note">O boleto vence em 3 dias úteis. O pedido é enviado após a compensação.</div></div></div>}
+              {pay === 'pix' && <div className="pixbox"><div style={{ color: 'var(--green)' }}>{I.pix}</div><div><b>Pague {brl(t.total)} com Pix</b><div className="note">O QR Code e o código copia e cola aparecem depois de confirmar o pedido.</div></div></div>}
+              {pay === 'boleto' && <div className="pixbox"><div style={{ color: 'var(--muted)' }}>{I.boleto}</div><div><b>Boleto de {brl(t.total)}</b><div className="note">O boleto vence em 3 dias úteis. O pedido é enviado após a compensação.</div></div></div>}
               {pay === 'cartao' && <>
                 <div className="cardpreview">
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}><span style={{ fontWeight: 700 }}>{cardBrand(d.cartao)}</span><span>◉◉</span></div>

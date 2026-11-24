@@ -23,7 +23,7 @@ export function CartDrawer({ ctx, onClose }) {
         <div className="hd"><h3>Sacola <span className="note" style={{ fontSize: 14 }}>({cartItems.reduce((s, c) => s + c.qty, 0)} itens)</span></h3><button className="x" onClick={onClose}>{I.x}</button></div>
         {cartItems.length === 0 ? (
           <div className="items" style={{ justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
-            <div style={{ fontSize: 48 }}>🛍️</div>
+            <div style={{ color: 'var(--muted)' }}>{I.bagLg}</div>
             <h3 className="serif" style={{ fontSize: 22 }}>Sua sacola está vazia</h3>
             <p className="note" style={{ fontSize: 14 }}>Explore a loja e adicione seus favoritos.</p>
             <button className="btn dark" onClick={() => { onClose(); go('loja'); }}>Continuar comprando</button>
@@ -31,7 +31,7 @@ export function CartDrawer({ ctx, onClose }) {
         ) : <>
           <div className="items">
             <div className="panel" style={{ padding: 14 }}>
-              <div className="note" style={{ marginBottom: 8, fontSize: 13 }}>{falta > 0 ? <>Faltam <b style={{ color: 'var(--ink)' }}>{brl(falta)}</b> para ganhar <b>frete grátis</b></> : <b style={{ color: 'var(--green)' }}>🎉 Você ganhou frete grátis!</b>}</div>
+              <div className="note" style={{ marginBottom: 8, fontSize: 13 }}>{falta > 0 ? <>Faltam <b style={{ color: 'var(--ink)' }}>{brl(falta)}</b> para ganhar <b>frete grátis</b></> : <b style={{ color: 'var(--green)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>{I.party} Você ganhou frete grátis!</b>}</div>
               <div className="freebar"><i style={{ width: Math.min(100, subtotal / FREE_SHIP * 100) + '%' }} /></div>
             </div>
             {cartItems.map(c => (
@@ -50,7 +50,7 @@ export function CartDrawer({ ctx, onClose }) {
             ))}
           </div>
           <div className="ft">
-            {db.cupom ? <div className="row"><span className="pill green">🏷 {db.cupom} — {COUPONS[db.cupom].label}</span><button className="link" onClick={() => setDb(d => ({ ...d, cupom: '' }))}>remover</button></div>
+            {db.cupom ? <div className="row"><span className="pill green">{I.tag} {db.cupom} — {COUPONS[db.cupom].label}</span><button className="link" onClick={() => setDb(d => ({ ...d, cupom: '' }))}>remover</button></div>
               : <div className="inline"><input className="inp" placeholder="Cupom de desconto" value={code} onChange={e => setCode(e.target.value)} onKeyDown={e => e.key === 'Enter' && apply()} /><button className="btn ghost sm" style={{ height: 40 }} onClick={apply}>Aplicar</button></div>}
             <div className="inline"><input className="inp" placeholder="CEP para calcular frete" value={db.cep} onChange={e => setDb(d => ({ ...d, cep: maskCEP(e.target.value) }))} /></div>
             <div className="row"><span>Subtotal</span><span>{brl(subtotal)}</span></div>

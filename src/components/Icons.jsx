@@ -11,7 +11,14 @@ export const I = {
   card: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>,
   back: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M4 12a8 8 0 1 0 2.3-5.7M4 4v4h4"/></svg>,
   check: <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3"><path d="m5 12 5 5 9-10"/></svg>,
+  tag: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/></svg>,
+  pix: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M12 2.5 21.5 12 12 21.5 2.5 12z"/><path d="M8 12h8M12 8v8"/></svg>,
+  boleto: <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8v8M9.5 8v8M12 8v8M15 8v8M17 8v8"/></svg>,
+  bagLg: <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>,
+  party: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="m5 12 5 5 9-10"/></svg>,
   filter: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M7 12h10M10 18h4"/></svg>,
 };
-export const Stars = ({ n, c }) => <div className="stars">{'★★★★★'.slice(0, Math.round(n))}<span style={{ color: '#ddd3c4', marginLeft: 0, letterSpacing: 1, fontSize: 13 }}>{'★★★★★'.slice(Math.round(n))}</span><span>{n.toFixed(1)}{c != null && ` (${c})`}</span></div>;
+export const Star = ({ on = true, size = 13 }) => <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" style={{ display: 'inline-block', verticalAlign: '-1px' }}><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z" fill={on ? '#d89b2b' : '#ddd3c4'}/></svg>;
+export const StarRow = ({ n }) => <span style={{ display: 'inline-flex', gap: 1 }}>{[1, 2, 3, 4, 5].map(i => <Star key={i} on={i <= Math.round(n)} />)}</span>;
+export const Stars = ({ n, c }) => <div className="stars" style={{ display: 'flex', alignItems: 'center' }}><StarRow n={n} /><span>{n.toFixed(1)}{c != null && ` (${c})`}</span></div>;
 export const off = p => p.antigo ? Math.round((1 - p.preco / p.antigo) * 100) : 0;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { brl, onlyDigits, STATUS, COUPONS, FREE_SHIP, CATS, UFS, maskCPF, maskCEP, maskTel, maskCard, maskVal, validCPF, luhn, cardBrand, calcFrete } from '../lib/utils';
 import { Art, ICONS } from '../components/Art';
-import { I, Stars, off } from '../components/Icons';
+import { I, Stars, Star, off } from '../components/Icons';
 import { ProductCard } from '../components/ProductCard';
 
 export function Store({ ctx, f, setF }) {
@@ -33,7 +33,7 @@ export function Store({ ctx, f, setF }) {
             </div>
             <div className="stats">
               <div><b>{db.products.length}</b><span>produtos</span></div>
-              <div><b>4,7★</b><span>avaliação média</span></div>
+              <div><b>4,7 <Star size={20} /></b><span>avaliação média</span></div>
               <div><b>48h</b><span>despacho</span></div>
             </div>
           </div>
